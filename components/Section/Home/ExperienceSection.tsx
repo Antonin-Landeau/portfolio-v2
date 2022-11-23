@@ -4,6 +4,8 @@ import Arrow from "../../Icons/Arrow";
 import ExperienceCard from "../../Library/Cards/ExperienceCard";
 import Title from "../../Library/Title";
 
+import { motion } from "framer-motion";
+
 interface Props {
   experiences: Experiences[];
 }
@@ -16,7 +18,13 @@ const ExperienceSection: FunctionComponent<Props> = ({ experiences }) => {
           <div className="absolute -top-5 left-0 w-5 -translate-x-1/2">
             <Arrow />
           </div>
-          <div className="absolute w-[2px] h-full -translate-x-1/2 bg-terthary-font"></div>
+          <motion.div
+            initial={{ height: 0 }}
+            viewport={{ once: true }}
+            whileInView={{ height: "100%" }}
+            transition={{ duration: 2, ease: "easeIn" }}
+            className="absolute w-[2px] h-full -translate-x-1/2 bg-terthary-font"
+          ></motion.div>
           <div>
             {experiences &&
               experiences.map((experience, index) => (

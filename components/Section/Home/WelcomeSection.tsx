@@ -8,7 +8,7 @@ import Typed from "react-typed";
 const WelcomeSection = () => {
   const [isTyping, setIsTyping] = useState(true);
   return (
-    <section className="flex flex-col justify-between items-center h-screen">
+    <section className="flex flex-col justify-between items-center h-screen overflow-hidden">
       <Header />
       <div className="text-[13vw] text-default-white font-semibold md:text-[8vw]">
         {isTyping && (

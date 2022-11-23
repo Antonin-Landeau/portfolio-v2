@@ -4,6 +4,7 @@ import { Skills } from "../../../types/types";
 import Title from "../../Library/Title";
 import SectionFooter from "./SectionFooter";
 import SkillCard from "../../Library/Cards/SkillCard";
+import Download from "../../Icons/Download";
 
 interface Props {
   skills: Skills[];
@@ -26,11 +27,16 @@ const SkillsSection: FunctionComponent<Props> = ({ skills }) => {
         </div>
         <SectionFooter variant="">
           <div className="py-7 text-primary-orange">
-            <Link href="https://github.com/Antonin-Landeau" legacyBehavior>
-              <a target="_blank">
+            <Link href="CV.pdf" download={true} legacyBehavior>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="flex items-center">
+                  <Download className="h-6 m-3"/>
                   <span>Télécharger mon CV</span>
                 </div>
+                
               </a>
             </Link>
           </div>

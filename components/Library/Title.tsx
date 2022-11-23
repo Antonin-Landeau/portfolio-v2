@@ -27,8 +27,8 @@ const Title: FunctionComponent<Props> = ({
               viewport={{ once: true }}
               whileInView={{ scale: 1 }}
               transition={{ duration: 0.5, ease: "backOut" }}
-              className={`text-6xl mr-5 whitespace-nowrap font-semibold text-default-black ${
-                className ? className : ""
+              className={`mr-5 whitespace-nowrap font-semibold text-default-black ${
+                className ? className : "text-6xl"
               }`}
             >
               {title}
@@ -95,6 +95,7 @@ const Title: FunctionComponent<Props> = ({
           ></motion.div>
         </motion.div>
       )}
+      
     </>
   );
 };

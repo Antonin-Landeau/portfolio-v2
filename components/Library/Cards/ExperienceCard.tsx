@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { FunctionComponent } from "react";
 import { urlFor } from "../../../sanity";
 import { Experiences } from "../../../types/types";
@@ -11,7 +12,13 @@ const ExperienceCard: FunctionComponent<Experiences> = ({
   technologies,
 }) => {
   return (
-    <div className="pl-5 relative my-8">
+    <motion.div
+      initial={{ y: "100%" }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0 }}
+      transition={{ duration: .5, ease: "easeIn" }}
+      className="pl-5 relative my-8"
+    >
       <div className="absolute h-3 w-3 rounded-full bg-primary-orange top-2 left-0 -translate-x-1/2"></div>
       <h2 className="text-default-white text-xl">
         {date} | <span className="text-terthary-font">{company}</span> :{" "}
@@ -34,7 +41,7 @@ const ExperienceCard: FunctionComponent<Experiences> = ({
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

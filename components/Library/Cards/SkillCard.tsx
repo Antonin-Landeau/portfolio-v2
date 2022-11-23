@@ -10,8 +10,8 @@ const SkillCard: FunctionComponent<Skills> = ({ skills, technologies }) => {
       initial={{ scale: "0" }}
       viewport={{ once: true }}
       whileInView={{ scale: 1 }}
-      transition={{ duration: 0.5, ease: "backOut" }}
-      className="my-10 max-w-md md:max-w-xs lg:max-w-md"
+      transition={{ duration: 0.5, ease: "easeIn" }}
+      className="my-10 max-w-md md:max-w-xs"
     >
       <div className="flex items-center gap-4 border-b border-primary-orange w-fit py-2 pr-4 overflow-hidden">
         {technologies &&
@@ -19,7 +19,7 @@ const SkillCard: FunctionComponent<Skills> = ({ skills, technologies }) => {
             return (
               <img
                 key={index}
-                className="h-10 max-w-[55px]"
+                className="h-6 max-w-[45px]"
                 src={urlFor(techno.descriptionIcon).url()}
                 alt="ds"
               />
@@ -31,7 +31,7 @@ const SkillCard: FunctionComponent<Skills> = ({ skills, technologies }) => {
           skills.map((techno, index) => {
             return (
               <p
-                className="text-xl pl-4 py-1 text-primary-font text-"
+                className="text-base pl-4 py-1 text-primary-font"
                 key={index}
               >
                 {techno}
