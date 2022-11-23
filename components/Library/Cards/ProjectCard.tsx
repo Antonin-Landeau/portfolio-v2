@@ -5,6 +5,8 @@ import { urlFor } from "../../../sanity";
 import { Project } from "../../../types/types";
 import Github from "../../Icons/Github";
 
+import { animate, motion } from "framer-motion";
+
 const ProjectCard: FunctionComponent<Project> = ({
   technologies,
   mainImage,
@@ -14,7 +16,9 @@ const ProjectCard: FunctionComponent<Project> = ({
   slug,
 }) => {
   return (
-    <div className="hover:cursor-pointer group overflow-hidden shadow-black/20 shadow-xl border-[1px] border-border-color-1 max-w-lg mb-16 lg:w-1/3 mx-3">
+    <div
+      className="hover:cursor-pointer group overflow-hidden rounded-xl shadow-black/20 shadow-xl border-[1px] border-border-color-1 max-w-lg mb-16 lg:w-1/3 mx-3"
+    >
       <img
         className="w-full h-32 object-cover object-top  group-hover:scale-105 transition-transform duration-200 ease-in-out"
         src={urlFor(mainImage).url()}

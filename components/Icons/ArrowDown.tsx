@@ -1,10 +1,19 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const ArrowDown = () => {
   return (
-    <svg
-      width="31"
-      height="36"
+    <motion.svg
+      animate={{
+        y: [0, 20, 0, 20, 0],
+      }}
+      transition={{
+        duration: 0.8,
+        ease: "easeInOut",
+        times: [0, 0.2, 0.5, 0.8, 1],
+        repeat: Infinity,
+        repeatDelay: 2,
+      }}
       viewBox="0 0 31 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +46,7 @@ const ArrowDown = () => {
         transform="matrix(-0.752364 0.658748 -0.752364 -0.658748 30.1836 13.2139)"
         stroke="#D84A01"
       />
-    </svg>
+    </motion.svg>
   );
 };
 
