@@ -1,14 +1,26 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import ContactSection from "../components/Section/Home/ContactSection";
+import Contact from "../components/Section/Home/ContactSection";
+import ExperienceSection from "../components/Section/Home/ExperienceSection";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
-import PresentationSection from "../components/PresentationSection";
-import ProjectSection from "../components/ProjectSection";
-import WelcomeSection from "../components/WelcomeSection";
+import PresentationSection from "../components/Section/Home/PresentationSection";
+import ProjectSection from "../components/Section/Home/ProjectSection";
+import SkillsSection from "../components/Section/Home/SkillsSection";
+import WelcomeSection from "../components/Section/Home/WelcomeSection";
 import styles from "../styles/Home.module.css";
+import { Experiences, Project, Skills } from "../types/types";
 import { sanityClient } from "./../sanity";
 
-export default function Home({projects} : any) {
+interface props {
+  projects: Project[];
+  skills: Skills[];
+  experiences: Experiences[];
+}
+
+export default function Home({ projects, skills, experiences }: props) {
   return (
     <div>
       <Head>
@@ -20,14 +32,18 @@ export default function Home({projects} : any) {
       <main className="bg-gb-color-black">
         <WelcomeSection />
         <PresentationSection />
-        <ProjectSection projects={projects}/>
+        <ProjectSection projects={projects} />
+        <SkillsSection skills={skills} />
+        <ExperienceSection experiences={experiences} />
+        <ContactSection />
+        <Footer />
       </main>
     </div>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const query = `
+  const queryProjects = `
   *[_type == 'project']{
     title,
     url,
@@ -39,11 +55,34 @@ export const getStaticProps: GetStaticProps = async () => {
   }
   `;
 
-  const projects = await sanityClient.fetch(query);
+  const querySkills = `
+  *[_type == 'skills']{
+    createdAt,
+    skills,
+    "technologies": technologies[]->{title,descriptionIcon },
+  } | order(createdAt asc)
+  `;
+
+  const queryExperiences = `
+  *[_type == 'experience']{
+    date,
+    company,
+    post,
+    description,
+    createdAt,
+    "technologies": technologies[]->{title,descriptionIcon },
+  } | order(createdAt desc)
+  `;
+
+  const projects = await sanityClient.fetch(queryProjects);
+  const skills = await sanityClient.fetch(querySkills);
+  const experiences = await sanityClient.fetch(queryExperiences);
 
   return {
     props: {
       projects,
+      skills,
+      experiences,
     },
   };
 };

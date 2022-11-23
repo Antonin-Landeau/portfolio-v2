@@ -14,6 +14,7 @@ module.exports = {
       'default-black': '#151517',
       'gb-color-black': '#272727',
       'embelishment-color':'#2C2C2C',
+      'border-color-1': '#eaeaea',
     },
     extend: {},
   },
