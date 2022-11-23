@@ -16,9 +16,7 @@ const ProjectCard: FunctionComponent<Project> = ({
   slug,
 }) => {
   return (
-    <div
-      className="group overflow-hidden rounded-xl shadow-black/20 shadow-sm border-[1px] border-border-color-1 max-w-sm mb-16 lg:w-1/3 mx-3"
-    >
+    <div className="group overflow-hidden rounded-xl shadow-black/20 shadow-sm border-[1px] border-border-color-1 max-w-sm mb-16 lg:w-1/3 mx-3">
       <img
         className="w-full h-32 object-cover object-top  group-hover:scale-105 transition-transform duration-200 ease-in-out"
         src={urlFor(mainImage).url()}
@@ -49,6 +47,7 @@ const ProjectCard: FunctionComponent<Project> = ({
               console.log(techno);
               return (
                 <img
+                  key={index}
                   className="h-6"
                   src={urlFor(techno.descriptionIcon).url()}
                   alt=""
