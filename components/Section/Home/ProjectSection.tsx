@@ -11,7 +11,6 @@ interface props {
 }
 
 const ProjectSection: FunctionComponent<props> = ({ projects }) => {
-  console.log(projects);
   return (
     <section className="p-5 bg-default-white">
       <Title title="Projects" variant="black" />

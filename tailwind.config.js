@@ -5,18 +5,18 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors:{
-      'primary-orange': '#D84A01',
-      'primary-font': '#434343',
-      'secondary-font': '#6F6F6F',
-      'terthary-font': '#CECECE',
-      'default-white': '#FBFBFB',
-      'default-black': '#151517',
-      'gb-color-black': '#272727',
-      'embelishment-color':'#2C2C2C',
-      'border-color-1': '#eaeaea',
+    colors: {
+      "primary-orange": "#D84A01",
+      "primary-font": "#434343",
+      "secondary-font": "#6F6F6F",
+      "terthary-font": "#CECECE",
+      "default-white": "#FBFBFB",
+      "default-black": "#151517",
+      "gb-color-black": "#272727",
+      "embelishment-color": "#2C2C2C",
+      "border-color-1": "#eaeaea",
     },
     extend: {},
   },
   plugins: [],
-}
+};

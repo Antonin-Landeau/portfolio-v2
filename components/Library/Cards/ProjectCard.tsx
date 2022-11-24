@@ -44,7 +44,6 @@ const ProjectCard: FunctionComponent<Project> = ({
         <div className="flex mt-4 gap-5 flex-wrap">
           {technologies &&
             technologies.map((techno, index) => {
-              console.log(techno);
               return (
                 <img
                   key={index}

@@ -7,9 +7,9 @@ import { motion } from "framer-motion";
 const SkillCard: FunctionComponent<Skills> = ({ skills, technologies }) => {
   return (
     <motion.div
-      initial={{ scale: "0" }}
+      initial={{ scale: .9, opacity: 0 }}
       viewport={{ once: true }}
-      whileInView={{ scale: 1 }}
+      whileInView={{ scale: 1 , opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeIn" }}
       className="my-10 max-w-md md:max-w-xs"
     >
