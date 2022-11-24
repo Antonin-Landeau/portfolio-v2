@@ -9,12 +9,14 @@ interface props {
 const WelcomAnimation: FunctionComponent<props> = ({ action }) => {
   return (
     <motion.div
+      key="div-wrapper"
       exit={{ opacity: 0 }}
       transition={{ delay: .7, duration: 0.5 }}
       className="fixed top-0 bottom-0 right-0 left-0 bg-gb-color-black z-10 flex justify-center items-center"
     >
       <div className="fixed top-0 bottom-0 right-0 left-0 z-20">
         <motion.div
+          key="div-animated-1"
           initial={{ height: "100%" }}
           animate={{ height: 0 }}
           exit={{ height: "100%" }}
@@ -22,6 +24,7 @@ const WelcomAnimation: FunctionComponent<props> = ({ action }) => {
           className="h-full w-full bg-primary-orange"
         ></motion.div>
         <motion.div
+          key="div-animated-2"
           initial={{ height: "100%" }}
           animate={{ height: 0 }}
           exit={{ height: "100%" }}

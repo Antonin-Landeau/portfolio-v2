@@ -15,7 +15,7 @@ const WelcomeSection = () => {
           {isTyping && <WelcomAnimation action={setIsTyping} />}
         </AnimatePresence>
         {!isTyping && (
-          <motion.div>
+          <div>
             <motion.div
               initial={{ x: 200, opacity: 0 }}
               animate={{ x: 0 , opacity:1}}
@@ -40,7 +40,7 @@ const WelcomeSection = () => {
             >
               FullStack
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </div>
       <motion.div
