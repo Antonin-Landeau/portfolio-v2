@@ -12,7 +12,7 @@ const Header = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeInOut", delay: 4 }}
-      className="flex p-5 w-full max-w-[1300px] lg:p-7"
+      className="flex p-5 w-full max-w-[1300px] lg:p-7 z-10"
     >
       <h1 className="font-medium text-base text-default-white lg:text-xl">
         LANDEAU <span className="text-primary-orange">Antonin</span>

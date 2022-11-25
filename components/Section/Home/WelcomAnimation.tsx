@@ -9,12 +9,14 @@ interface props {
 const WelcomAnimation: FunctionComponent<props> = ({ action }) => {
   return (
     <motion.div
+      key="div-wrapper"
       exit={{ opacity: 0 }}
-      transition={{ delay: .7, duration: 0.5 }}
+      transition={{ delay: 0.7, duration: 0.5 }}
       className="fixed top-0 bottom-0 right-0 left-0 bg-gb-color-black z-10 flex justify-center items-center"
     >
       <div className="fixed top-0 bottom-0 right-0 left-0 z-20">
         <motion.div
+          key="div-animated-1"
           initial={{ height: "100%" }}
           animate={{ height: 0 }}
           exit={{ height: "100%" }}
@@ -22,6 +24,7 @@ const WelcomAnimation: FunctionComponent<props> = ({ action }) => {
           className="h-full w-full bg-primary-orange"
         ></motion.div>
         <motion.div
+          key="div-animated-2"
           initial={{ height: "100%" }}
           animate={{ height: 0 }}
           exit={{ height: "100%" }}
@@ -31,7 +34,7 @@ const WelcomAnimation: FunctionComponent<props> = ({ action }) => {
       </div>
       <div className="m-auto w-fit h-fit px-5 max-w-7xl">
         <h1 className="block font-semibold w-fit  text-[15vw] leading-[1.2em] lg:text-[12vh]">
-          <div className="overflow-hidden w-fit">
+          <div className="overflow-hidden w-fit text-primary-orange">
             <motion.div
               className="w-fit"
               initial={{ y: "110%" }}
@@ -62,8 +65,14 @@ const WelcomAnimation: FunctionComponent<props> = ({ action }) => {
             </motion.div>
           </div>
         </h1>
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: "80%" }}
+          transition={{ duration: 2, delay: 0.7 , ease: 'easeInOut'}}
+          className="h-1 w-full bg-primary-orange mt-10"
+        ></motion.div>
         <Typed
-          className="text-default-white text-[7vw] font-light lg:text-[5vh]"
+          className="text-default-white text-[5vw] font-light lg:text-[5vh]"
           style={{
             fontFamily: "JetBrains Mono",
           }}
