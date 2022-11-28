@@ -7,7 +7,7 @@ import SectionFooter from "./SectionFooter";
 const PresentationSection = () => {
   return (
     <section className="bg-gb-color-black px-5 w-full">
-      <Title title="A propos" variant="white" />
+      <Title title="A propos" variant="white" small />
       <div className="w-fit mx-auto lg:my-28">
         <div className="md:flex items-center ">
           <Image
@@ -27,9 +27,9 @@ const PresentationSection = () => {
               un travail en tant que
               <span className="text-primary-orange font-medium">
                 {" "}
-                développeur web
+                développeur web. <br />
               </span>
-              .Vous pourrez découvrir les
+              Vous pourrez découvrir les
               <span className="text-primary-orange font-medium"> projets </span>
               que j’ai réalisés durant mes études et mon temps libre à
               travers ce portfolio.
