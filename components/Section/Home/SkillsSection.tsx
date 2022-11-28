@@ -13,7 +13,7 @@ interface Props {
 const SkillsSection: FunctionComponent<Props> = ({ skills }) => {
   return (
     <section className="p-5 bg-default-white">
-      <Title title="Skills" variant="black" />
+      <Title title="Compétences" variant="black" />
       <div className="py-5 mx-auto w-fit">
         <div className="md:grid grid-cols-2">
           {skills &&
