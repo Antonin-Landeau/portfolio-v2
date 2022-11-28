@@ -18,7 +18,8 @@ const PresentationSection = () => {
           <div className="h-w-[2px] bg-primary-orange"></div>
           <div className="md:ml-16">
             <p className="text-xl text-center text-default-white py-7 max-w-md md:text-left ">
-              Bonjour, je suis LANDEAU Antonin et
+              Bonjour, <br />
+              je suis LANDEAU Antonin et
               <span className="text-primary-orange font-medium">
                 {" "}
                 recherche{" "}
@@ -26,11 +27,11 @@ const PresentationSection = () => {
               un travail en tant que
               <span className="text-primary-orange font-medium">
                 {" "}
-                developpeur web{" "}
+                développeur web
               </span>
-              .Vous pourrez décourvir les
+              .Vous pourrez découvrir les
               <span className="text-primary-orange font-medium"> projets </span>
-              que j’ai pue réaliser durant mes études et mon temps libre à
+              que j’ai réalisés durant mes études et mon temps libre à
               travers ce portfolio.
             </p>
             <SectionFooter variant="white">

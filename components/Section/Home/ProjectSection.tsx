@@ -13,7 +13,7 @@ interface props {
 const ProjectSection: FunctionComponent<props> = ({ projects }) => {
   return (
     <section className="p-5 bg-default-white">
-      <Title title="Projects" variant="black" />
+      <Title title="Projets" variant="black" />
       <div className="py-10 mx-auto w-fit">
         <div className="lg:flex">
           {projects &&
