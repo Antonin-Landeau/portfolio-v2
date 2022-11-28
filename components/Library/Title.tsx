@@ -81,7 +81,7 @@ const Title: FunctionComponent<Props> = ({
               transition={{ duration: 0.5, ease: "backOut" }}
               className={`text-6xl mr-5 whitespace-nowrap font-semibold text-primary-font ${
                 className ? className : ""
-              }`}
+              } ${small ? "text-4xl sm:text-6xl" : "text-6xl"}`}
             >
               {title}
             </motion.h1>
