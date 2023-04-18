@@ -29,7 +29,7 @@ export interface Slug {
 
 export interface Technology {
   descriptionIcon?: MainImage;
-  title?: string;
+  title: string;
 }
 
 export interface Skills {

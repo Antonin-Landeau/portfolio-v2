@@ -21,11 +21,8 @@ const ProjectSection: FunctionComponent<props> = ({ projects }) => {
               return (
                 <ProjectCard
                   key={index}
-                  title={project.title}
-                  mainImage={project.mainImage}
-                  technologies={project.technologies}
-                  githubRepository={project.githubRepository}
-                  url={project.url}
+                  project={project}
+                  className="w-full"
                 />
               );
             })}
