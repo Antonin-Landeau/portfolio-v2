@@ -14,6 +14,8 @@ const TechnologieList = ({
  selectedTechnologies,
  setSelectedTechnologies,
 }: props) => {
+ console.log("selectedTechnologies", selectedTechnologies);
+
  const updateTechnologies = (
   e: ChangeEvent<HTMLInputElement>,
   technology: string
@@ -27,8 +29,6 @@ const TechnologieList = ({
     })
    );
   }
-  console.log(selectedTechnologies);
-  console.log(JSON.stringify(selectedTechnologies));
  };
  return (
   <div>
@@ -39,6 +39,7 @@ const TechnologieList = ({
       <li key={index} className="flex p-0.5">
        <input
         type="checkbox"
+        checked={selectedTechnologies.includes(technologie)}
         onChange={(e) => updateTechnologies(e, technologie)}
        />
        <div className="pl-1">{technologie}</div>

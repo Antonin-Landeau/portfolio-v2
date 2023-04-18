@@ -69,7 +69,8 @@ const ProjectsSection = ({ technologies }: props) => {
 
    {isFilterOpen && (
     <Filter
-      
+     selectedTechnologies={selectedTechnologies}
+     setSelectedTechnologies={setSelectedTechnologies}
      onSubmit={(e) => {
       setSelectedTechnologies(e);
       setIsFilterOpen(false);

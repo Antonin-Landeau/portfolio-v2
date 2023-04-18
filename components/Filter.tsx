@@ -1,16 +1,21 @@
-import React, { FormEvent, useState } from "react";
+import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import TechnologieList from "./TechnologieList";
 
 interface props {
  technologies: string[];
+ selectedTechnologies: string[];
+ setSelectedTechnologies: Dispatch<SetStateAction<string[]>>;
  onSubmit: (e: string[]) => void;
 }
 
-const Filter = ({ technologies, onSubmit }: props) => {
- const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
+const Filter = ({
+ technologies,
+ selectedTechnologies,
+ setSelectedTechnologies,
+ onSubmit,
+}: props) => {
  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
   e.preventDefault();
-  console.log(selectedTechnologies);
   onSubmit(selectedTechnologies);
  };
  return (
