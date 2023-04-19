@@ -31,13 +31,14 @@ const TechnologieList = ({
   }
  };
  return (
-  <div>
-   <h2 className=" border-b-[1px] text-lg mb-2">Technologies</h2>
+  <div className="p-5 text-lg">
+   <h2 className=" border-b-[1px] text-lg mb-2 w-fit uppercase font-bold">Technologies</h2>
    <ul className="pl-2">
     {technologies &&
      technologies.map((technologie, index) => (
-      <li key={index} className="flex p-0.5">
+      <li key={index} className="flex p-0.5 items-center">
        <input
+       className="w-5 h-5 mr-1 accent-primary-orange"
         type="checkbox"
         checked={selectedTechnologies.includes(technologie)}
         onChange={(e) => updateTechnologies(e, technologie)}

@@ -8,7 +8,7 @@ const FiltresButton = ({ onClick }: props) => {
  return (
   <div
    onClick={() => onClick(true)}
-   className="flex items-center px-2 py-1 w-fit border-2 rounded-lg  mb-5"
+   className="flex items-center px-2 py-1 w-fit border-2 rounded-lg mr-2"
   >
    <div className="text-lg font-medium bord">Filtres</div>
    <svg

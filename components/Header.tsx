@@ -8,7 +8,6 @@ import CV from "./Icons/CV";
 const Header = () => {
  const router = useRouter();
  const { pathname } = router;
- console.log(pathname);
  return (
   <motion.header
    initial={{ opacity: 0 }}
