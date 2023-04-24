@@ -7,12 +7,14 @@ interface props {
  technologies: string[];
  setSelectedTechnologies: Dispatch<SetStateAction<string[]>>;
  selectedTechnologies: string[];
+ className?: string
 }
 
 const TechnologieList = ({
  technologies,
  selectedTechnologies,
  setSelectedTechnologies,
+ className
 }: props) => {
  console.log("selectedTechnologies", selectedTechnologies);
 
@@ -31,9 +33,9 @@ const TechnologieList = ({
   }
  };
  return (
-  <div className="p-5 text-lg">
-   <h2 className=" border-b-[1px] text-lg mb-2 w-fit uppercase font-bold">Technologies</h2>
-   <ul className="pl-2">
+  <div className={`p-5 text-lg ${className}`}>
+   <h2 className=" border-b-[1px] text-lg mb-2 w-fit uppercase font-bold lg:text-base">Technologies</h2>
+   <ul className="pl-2 lg:text-base">
     {technologies &&
      technologies.map((technologie, index) => (
       <li key={index} className="flex p-0.5 items-center">

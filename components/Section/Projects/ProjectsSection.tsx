@@ -10,30 +10,28 @@ import Filter from "../../Filter";
 import ActiveFilter from "../../ActiveFilter";
 
 interface props {
-  technologies: string[];
+ technologies: string[];
 }
 
 const ProjectsSection = ({ technologies }: props) => {
-  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
-    []
-  );
-  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+ const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
+ const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
-  const [projects, setProjects] = useState<Project[]>([]);
-  const getProjectsByTechnologies = async (technologies: string[]) => {
-    const getProjectsQuery = `*[_type == "project" && references(*[_type == "technology" && title in ${JSON.stringify(
-      technologies
-    )}]._id)]{
+ const [projects, setProjects] = useState<Project[]>([]);
+ const getProjectsByTechnologies = async (technologies: string[]) => {
+  const getProjectsQuery = `*[_type == "project" && references(*[_type == "technology" && title in ${JSON.stringify(
+   technologies
+  )}]._id)]{
     ...,
     'technologies': technologies[]->{title, descriptionIcon}
   }`;
-    const data = await sanityClient.fetch(getProjectsQuery);
-    console.log(data);
-    setProjects(data);
-  };
+  const data = await sanityClient.fetch(getProjectsQuery);
+  console.log(data);
+  setProjects(data);
+ };
 
-  const getAllProjects = async () => {
-    const query = `*[_type == 'project'] {
+ const getAllProjects = async () => {
+  const query = `*[_type == 'project'] {
     "technologies": technologies[]->{title,descriptionIcon},
     mainImage,
     title,
@@ -41,96 +39,91 @@ const ProjectsSection = ({ technologies }: props) => {
     url,
     slug,
   }`;
-    try {
-      const data = await sanityClient.fetch(query);
-      setProjects(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  try {
+   const data = await sanityClient.fetch(query);
+   setProjects(data);
+  } catch (error) {
+   console.log(error);
+  }
+ };
 
-  useEffect(() => {
-    getAllProjects();
-  }, []);
+ useEffect(() => {
+  getAllProjects();
+ }, []);
 
-  useEffect(() => {
-    if (selectedTechnologies.length) {
-      console.log("fetchDate with filter");
-      getProjectsByTechnologies(selectedTechnologies);
-    } else {
-      getAllProjects();
-    }
-  }, [selectedTechnologies]);
+ useEffect(() => {
+  if (selectedTechnologies.length) {
+   console.log("fetchDate with filter");
+   getProjectsByTechnologies(selectedTechnologies);
+  } else {
+   getAllProjects();
+  }
+ }, [selectedTechnologies]);
 
-  return (
-    <section className="bg-default-white w-full">
-      <div className="grid ">
-        <div className="flex items-center p-5 overflow-auto">
-          <FiltresButton onClick={(e) => setIsFilterOpen(e)} />
-
-          <div className="flex items-center gap-3 overflow-x-scroll w-full h-fit">
-            {selectedTechnologies &&
-              selectedTechnologies.map((selectedTechnologie, index) => (
-                <ActiveFilter
-                  key={index}
-                  title={selectedTechnologie}
-                  onClick={(title: string) => {
-                    setSelectedTechnologies(
-                      selectedTechnologies.filter((title: string) => {
-                        return selectedTechnologie !== title;
-                      })
-                    );
-                  }}
-                />
-              ))}
-          </div>
-        </div>
-        <div className="mx-auto p-5">{projects && <ProjectList projects={projects} />}</div>
-      </div>
-      {/* <div className="flex items-center mb-5 w-full mx-auto w-full">
-        <TechnologieList
-        
-          selectedTechnologies={selectedTechnologies}
-          technologies={technologies}
-          setSelectedTechnologies={setSelectedTechnologies}
-        />
-        <FiltresButton onClick={(e) => setIsFilterOpen(e)} />
-        <div>
-          <div className="flex items-center gap-3 overflow-x-scroll w-full h-fit">
-            {selectedTechnologies &&
-              selectedTechnologies.map((selectedTechnologie, index) => (
-                <ActiveFilter
-                  key={index}
-                  title={selectedTechnologie}
-                  onClick={(title: string) => {
-                    setSelectedTechnologies(
-                      selectedTechnologies.filter((title: string) => {
-                        return selectedTechnologie !== title;
-                      })
-                    );
-                  }}
-                />
-              ))}
-          </div>
-          <ProjectList projects={projects} />
-        </div>
-      </div>
-      */}
-
-      {isFilterOpen && (
-        <Filter
-          selectedTechnologies={selectedTechnologies}
-          setSelectedTechnologies={setSelectedTechnologies}
-          setIsFilterOpen={setIsFilterOpen}
-          onSubmit={(e) => {
-            setSelectedTechnologies(e);
-            setIsFilterOpen(false);
-          }}
-          technologies={technologies}
-        />
-      )}
-    </section>
-  );
+ return (
+  <section className="bg-default-white w-full lg:flex lg:justify-center lg:pt-7">
+   <TechnologieList
+    className="hidden lg:block lg:mr-5"
+    technologies={technologies}
+    selectedTechnologies={selectedTechnologies}
+    setSelectedTechnologies={setSelectedTechnologies}
+   />
+   <div className="flex items-center p-5 overflow-auto max-w-2xl mx-auto lg:hidden ">
+    <FiltresButton onClick={(e) => setIsFilterOpen(e)} />
+    <div className="flex items-center gap-3 overflow-x-scroll w-full h-fit">
+     {selectedTechnologies &&
+      selectedTechnologies.map((selectedTechnologie, index) => (
+       <ActiveFilter
+        key={index}
+        title={selectedTechnologie}
+        onClick={(title: string) => {
+         setSelectedTechnologies(
+          selectedTechnologies.filter((title: string) => {
+           return selectedTechnologie !== title;
+          })
+         );
+        }}
+        className="lg:hidden"
+       />
+      ))}
+    </div>
+   </div>
+   <div>
+    <div className="hidden items-center p-5 overflow-auto max-w-2xl lg:flex lg:pl-0">
+     {selectedTechnologies &&
+      selectedTechnologies.map((selectedTechnologie, index) => (
+       <ActiveFilter
+        key={index}
+        title={selectedTechnologie}
+        onClick={(title: string) => {
+         setSelectedTechnologies(
+          selectedTechnologies.filter((title: string) => {
+           return selectedTechnologie !== title;
+          })
+         );
+        }}
+        className="hidden lg:flex h-fit"
+       />
+      ))}
+    </div>
+    <div className="mx-auto w-fit md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-5">
+     {projects && <ProjectList projects={projects} />}
+    </div>
+   </div>
+   {isFilterOpen && (
+    <Filter
+     selectedTechnologies={selectedTechnologies}
+     setSelectedTechnologies={setSelectedTechnologies}
+     setIsFilterOpen={setIsFilterOpen}
+     onSubmit={(e) => {
+      setSelectedTechnologies(e);
+      setIsFilterOpen(false);
+     }}
+     technologies={technologies}
+    />
+   )}
+  </section>
+ );
 };
 
 export default ProjectsSection;

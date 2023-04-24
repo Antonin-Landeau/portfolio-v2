@@ -1,7 +1,6 @@
 import React from "react";
 import ProjectCard from "./Library/Cards/ProjectCard";
 import { Project } from "../types/types";
-import ProjectCard2 from "./Library/Cards/ProjectCard2";
 
 interface props {
   projects: Project[];
@@ -12,10 +11,10 @@ const ProjectList = ({ projects }: props) => {
     <>
       {projects &&
         projects.map((project, index) => (
-          <ProjectCard2
+          <ProjectCard
             key={index}
             project={project}
-            className="max-w-sm w-full"
+            className="max-w-sm w-full mb-5"
           />
         ))}
     </>
