@@ -15,7 +15,7 @@ interface props {
 const ProjectCard: FunctionComponent<props> = ({ project, className }) => {
  return (
   <div
-   className={`group overflow-hidden rounded-xl shadow-black/20 shadow-sm border-[1px] border-border-color-1 max-w-sm mb-12 lg:w-1/3 mx-3 ${className}`}
+   className={`group overflow-hidden rounded-xl shadow-black/20 shadow-sm border-[1px] border-border-color-1 ${className}`}
   >
    <img
     className="w-full h-32 object-cover object-top  group-hover:scale-105 transition-transform duration-200 ease-in-out"
@@ -24,7 +24,7 @@ const ProjectCard: FunctionComponent<props> = ({ project, className }) => {
    />
    <div className="bg-default-white p-3 drop-shadow-[0_-5px_10px_rgba(0,0,0,0.1)] border-t border-border-color-1 h-full">
     <div className="w-full flex items-center mb-3">
-     <h2 className="text-gb-color-black font-medium text-3xl">
+     <h2 className="text-gb-color-black font-medium text-3xl whitespace-pre-wrap">
       {project. title}
      </h2>
      <div className="ml-auto w-fit h-fit flex">

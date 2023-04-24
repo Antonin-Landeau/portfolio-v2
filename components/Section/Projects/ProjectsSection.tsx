@@ -63,27 +63,59 @@ const ProjectsSection = ({ technologies }: props) => {
   }, [selectedTechnologies]);
 
   return (
-    <section className="p-5 bg-default-white m-auto">
-      <div className="flex items-center mb-5 w-full">
+    <section className="bg-default-white w-full">
+      <div className="grid ">
+        <div className="flex items-center p-5 overflow-auto">
+          <FiltresButton onClick={(e) => setIsFilterOpen(e)} />
+
+          <div className="flex items-center gap-3 overflow-x-scroll w-full h-fit">
+            {selectedTechnologies &&
+              selectedTechnologies.map((selectedTechnologie, index) => (
+                <ActiveFilter
+                  key={index}
+                  title={selectedTechnologie}
+                  onClick={(title: string) => {
+                    setSelectedTechnologies(
+                      selectedTechnologies.filter((title: string) => {
+                        return selectedTechnologie !== title;
+                      })
+                    );
+                  }}
+                />
+              ))}
+          </div>
+        </div>
+        <div className="mx-auto p-5">{projects && <ProjectList projects={projects} />}</div>
+      </div>
+      {/* <div className="flex items-center mb-5 w-full mx-auto w-full">
+        <TechnologieList
+        
+          selectedTechnologies={selectedTechnologies}
+          technologies={technologies}
+          setSelectedTechnologies={setSelectedTechnologies}
+        />
         <FiltresButton onClick={(e) => setIsFilterOpen(e)} />
-        <div className="flex items-center gap-3 overflow-x-scroll w-full">
-          {selectedTechnologies &&
-            selectedTechnologies.map((selectedTechnologie, index) => (
-              <ActiveFilter
-                key={index}
-                title={selectedTechnologie}
-                onClick={(title: string) => {
-                  setSelectedTechnologies(
-                    selectedTechnologies.filter((title: string) => {
-                      return selectedTechnologie !== title;
-                    })
-                  );
-                }}
-              />
-            ))}
+        <div>
+          <div className="flex items-center gap-3 overflow-x-scroll w-full h-fit">
+            {selectedTechnologies &&
+              selectedTechnologies.map((selectedTechnologie, index) => (
+                <ActiveFilter
+                  key={index}
+                  title={selectedTechnologie}
+                  onClick={(title: string) => {
+                    setSelectedTechnologies(
+                      selectedTechnologies.filter((title: string) => {
+                        return selectedTechnologie !== title;
+                      })
+                    );
+                  }}
+                />
+              ))}
+          </div>
+          <ProjectList projects={projects} />
         </div>
       </div>
-      <ProjectList projects={projects} />
+      */}
 
       {isFilterOpen && (
         <Filter
