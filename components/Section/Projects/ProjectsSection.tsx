@@ -61,7 +61,7 @@ const ProjectsSection = ({ technologies }: props) => {
  }, [selectedTechnologies]);
 
  return (
-  <section className="bg-default-white w-full lg:flex lg:justify-center lg:pt-7">
+  <section className="px-5 bg-default-white w-full lg:flex lg:justify-center lg:pt-7">
    <TechnologieList
     className="hidden lg:block lg:mr-5"
     technologies={technologies}
@@ -88,8 +88,9 @@ const ProjectsSection = ({ technologies }: props) => {
       ))}
     </div>
    </div>
-   <div>
+   <div className="lg:max-w-4xl">
     <div className="hidden items-center p-5 overflow-auto max-w-2xl lg:flex lg:pl-0">
+      <div className="text-lg mr-3">Filtres :</div>
      {selectedTechnologies &&
       selectedTechnologies.map((selectedTechnologie, index) => (
        <ActiveFilter
@@ -105,9 +106,13 @@ const ProjectsSection = ({ technologies }: props) => {
         className="hidden lg:flex h-fit"
        />
       ))}
+      {selectedTechnologies.length == 0 && <div className="text-secondary-font">
+        Aucuns
+      </div> }
     </div>
-    <div className="mx-auto w-fit md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-5">
+    <div className="mx-auto w-fit md:grid md:grid-cols-2 md:w-[800px] md:gap-5 xl:grid-cols-3 xl:w-[1000px] ">
      {projects && <ProjectList projects={projects} />}
+     {projects.length == 0 && <div className="w-full">Aucun resultat</div>}
     </div>
    </div>
    {isFilterOpen && (

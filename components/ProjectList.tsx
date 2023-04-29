@@ -14,7 +14,7 @@ const ProjectList = ({ projects }: props) => {
           <ProjectCard
             key={index}
             project={project}
-            className="max-w-sm w-full mb-5"
+            className="w-full mb-5"
           />
         ))}
     </>

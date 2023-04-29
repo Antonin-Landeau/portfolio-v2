@@ -14,8 +14,9 @@ interface props {
 
 const ProjectCard: FunctionComponent<props> = ({ project, className }) => {
  return (
-  <div
-   className={`group overflow-hidden rounded-xl shadow-black/20 shadow-sm border-[1px] border-border-color-1 ${className}`}
+  <Link
+   href={`/project/${project.slug?.current}`}
+   className={`group overflow-hidden rounded-xl shadow-black/20 shadow-sm border-[1px] border-border-color-1 block ${className}`}
   >
    <img
     className="w-full h-32 object-cover object-top  group-hover:scale-105 transition-transform duration-200 ease-in-out"
@@ -27,23 +28,7 @@ const ProjectCard: FunctionComponent<props> = ({ project, className }) => {
      <h2 className="text-gb-color-black font-medium text-3xl whitespace-pre-wrap">
       {project. title}
      </h2>
-     <div className="ml-auto w-fit h-fit flex">
-      {project.url && (
-       <Link
-        href={project.url}
-        className="mr-2 text-primary-orange font-medium"
-       >
-        <div className="underline">visiter</div>
-       </Link>
-      )}
-      {project.githubRepository && (
-       <Link href={project.githubRepository} legacyBehavior>
-        <a target="_blank">
-         <Github className="h-6" />
-        </a>
-       </Link>
-      )}
-     </div>
+     
     </div>
     <div className="h-[1px] w-full bg-primary-orange"></div>
     <div className="flex mt-4 gap-5 flex-wrap">
@@ -60,7 +45,7 @@ const ProjectCard: FunctionComponent<props> = ({ project, className }) => {
       })}
     </div>
    </div>
-  </div>
+  </Link>
  );
 };
 

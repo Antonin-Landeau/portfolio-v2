@@ -15,7 +15,6 @@ interface props {
 }
 
 const projects = ({ technologies }: props) => {
- useEffect(() => {}, []);
  return (
   <div>
    <AnimatePresence>
@@ -40,7 +39,9 @@ export const getStaticProps: GetStaticProps = async () => {
  }`;
  const technologies = await sanityClient.fetch(queryTechnologies);
  console.log(technologies);
- const technologyTitles = technologies.map((technology:Technology) => technology.title);
+ const technologyTitles = technologies.map(
+  (technology: Technology) => technology.title
+ );
 
  return {
   props: {
