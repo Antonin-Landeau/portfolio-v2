@@ -17,7 +17,7 @@ const Header = () => {
     ease: "easeInOut",
     delay: pathname === "/" ? 6 : 0,
    }}
-   className="flex p-5 w-full max-w-[1300px] lg:p-7 z-10"
+   className="flex p-5 w-full max-w-[1300px] lg:p-7 z-10 mx-auto"
   >
    <Link href="/">
     <h1 className="font-medium text-base text-default-white lg:text-xl">
