@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useLayoutEffect, useRef } from "react";
 import { sanityClient, urlFor } from "../../sanity";
 import { MainImage, Project, Slug } from "../../types/types";
 import path from "path";
@@ -15,6 +15,8 @@ import {
  PortableTextProps,
  PortableTextReactComponents,
 } from "@portabletext/react";
+import ArrowLeft from "../../components/Icons/ChevronLeft";
+import ChevronLeft from "../../components/Icons/ChevronLeft";
 
 interface props {
  project: Project;
@@ -32,7 +34,7 @@ const components: Partial<PortableTextReactComponents> = {
  block: {
   normal: ({ children }) => <p className="py-1 indent-3">{children}</p>,
   h1: ({ children }) => (
-   <h1 className="text-primary-orange text-5xl uppercase font-bold indent-7 py-3">
+   <h1 className="text-primary-orange text-5xl uppercase font-bold py-3">
     {children}
    </h1>
   ),
@@ -51,7 +53,6 @@ const components: Partial<PortableTextReactComponents> = {
 };
 
 const Project = ({ project }: props) => {
- console.log(project);
  return (
   <div>
    <AnimatePresence>
@@ -61,69 +62,121 @@ const Project = ({ project }: props) => {
      <link rel="icon" href="/favicon.png" />
     </Head>
     <main className="" key="animation">
-     <section>
-      <h1>{project?.title}</h1>
-      <p>{project?.description}</p>
+     <section
+      className={`flex top-0 items-center w-full h-64 drop-shadow-sm fixed -z-20 lg:static lg:h-80`}
+     >
+      {project.mainImage && (
+       <img
+        className="w-full h-full object-cover"
+        src={urlFor(project.mainImage).url()}
+       />
+      )}
+      <div className="absolute top-0 bottom-0 left-0 right-0 w-full h-full bg-gradient-to-b from-secondary-font/60 to-default-black/50 z-10"></div>
+      <Link
+       href={"/projects"}
+       className="absolute flex items-center top-0 left-0 text-default-white p-3 z-20 lg:hidden"
+      >
+       <ChevronLeft className="w-10" />
+       <span className="font-semibold text-lg">Retour</span>
+      </Link>
+      <h1 className="absolute text-3xl ml-2  top-14 right-0 uppercase bg-primary-orange text-default-white px-5 py-3 z-20 rounded-tl-xl rounded-bl-xl lg:hidden">
+       {project?.title}
+      </h1>
      </section>
-     <section>
-      <iframe
-       width="560"
-       height="315"
-       src={`https://www.youtube.com/embed/${project.video}`}
-       title="YouTube video player"
-       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      ></iframe>
-     </section>
-     <section>
-      <div>
-       {project.githubRepository && (
+
+     <div
+      className="bg-default-white mt-48 rounded-t-3xl px-5 drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] lg:grid lg:grid-cols-3 lg:max-w-5xl lg:mx-auto lg:gap-x-10 lg:drop-shadow-[0_0px_10px_rgba(0,0,0,0.25)] lg:relative lg:px-10 lg:-mt-40 lg:rounded-b-3xl py-5 xl:max-w-7xl"
+     >
+      <Link
+       href={"/projects"}
+       className=" hidden absolute  items-center text-default-white p-3 z-20 lg:flex lg:-top-16 lg:-left-5 lg:hover:-translate-x-5 ease-out duration-300"
+      >
+       <ChevronLeft className="w-8" />
+       <span className="font-semibold text-lg">Retour</span>
+      </Link>
+      <h1 className="absolute hidden text-3xl font-medium ml-2  top-14 right-0 uppercase bg-primary-orange text-default-white px-5 py-3 z-20 rounded-xl rounded-bl-xl lg:block lg:-top-8 lg:right-20">
+       {project?.title}
+      </h1>
+      <section className=" py-5 text-secondary-font lg:h-fit">
+       <h2 className="pb-1 w-fit border-b border-primary-orange text-xl text-primary-font font-medium mb-3">
+        Description
+       </h2>
+       <p className="text-justify">{project.description}</p>
+      </section>
+      <section className="lg:row-start-2 lg:col-start-1">
+       <h2 className="pb-1 w-fit border-b border-primary-orange text-xl text-primary-font font-medium">
+        Technologies utilisée
+       </h2>
+
+       <div className="flex my-5 gap-3 flex-wrap">
+        {project.technologies &&
+         project.technologies.map((techno, index) => {
+          return (
+           <img
+            key={index}
+            className="h-6"
+            src={urlFor(techno.descriptionIcon).url()}
+            alt=""
+           />
+          );
+         })}
+       </div>
+      </section>
+      <section className="lg:col-start-2 lg:col-span-2 lg:row-start-1 lg:row-span-4  lg:py-5">
+       <h2 className="pb-1 w-fit border-b border-primary-orange text-xl text-primary-font font-medium mb-3">
+        Démonstration
+       </h2>
+       <div className="relative overflow-hidden w-full pt-[56.25%] rounded-xl">
+        <iframe
+         className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
+         src={`https://www.youtube.com/embed/${project.video}`}
+         title="YouTube video player"
+         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        ></iframe>
+       </div>
+      </section>
+      <section className="py-5">
+       <h2 className="pb-1 w-fit border-b border-primary-orange text-xl text-primary-font font-medium mb-3">
+        Liens
+       </h2>
+       <div className="mb-2">
+        {project.githubRepository && (
+         <div className="flex items-center gap-2">
+          <Github className="w-6 h-6" />
+          <Link href={project.githubRepository} legacyBehavior>
+           <a
+            target="_blank"
+            className="hover:text-primary-orange hover:underline"
+           >
+            Github
+           </a>
+          </Link>
+         </div>
+        )}
+       </div>
+       {project.url && (
         <div className="flex items-center gap-2">
-         <Github className="w-5 h-5" />
-         <Link href={project.githubRepository} legacyBehavior>
+         <LinkIcon className="w-5 h-5 text-primary-orange" />
+         <Link href={project.url} legacyBehavior>
           <a
            target="_blank"
            className="hover:text-primary-orange hover:underline"
           >
-           Github
+           {project.url}
           </a>
          </Link>
         </div>
        )}
-      </div>
-      {project.url && (
-       <div className="flex items-center gap-2">
-        <LinkIcon className="w-5 h-5 text-primary-orange" />
-        <Link href={project.url} legacyBehavior>
-         <a
-          target="_blank"
-          className="hover:text-primary-orange hover:underline"
-         >
-          {project.url}
-         </a>
-        </Link>
-       </div>
-      )}
-     </section>
-     <section>
-      <div className="flex mt-4 gap-3 flex-wrap">
-       {project.technologies &&
-        project.technologies.map((techno, index) => {
-         return (
-          <img
-           key={index}
-           className="h-6"
-           src={urlFor(techno.descriptionIcon).url()}
-           alt=""
-          />
-         );
-        })}
-      </div>
-     </section>
-     {project.body && (
-      <section className="p-5">
-       <PortableText value={project.body} components={components} />
       </section>
-     )}
+      {project.body && (
+       <section className="p-5 lg:col-start-2 lg:row-start-auto lg:p-0 lg:col-span-2">
+        <h2 className="pb-1 w-fit border-b border-primary-orange text-xl text-primary-font font-medium mb-3">
+         Information
+        </h2>
+        <PortableText value={project.body} components={components} />
+       </section>
+      )}
+     </div>
     </main>
    </AnimatePresence>
   </div>
