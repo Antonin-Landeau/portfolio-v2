@@ -17,6 +17,7 @@ import {
 } from "@portabletext/react";
 import ArrowLeft from "../../components/Icons/ChevronLeft";
 import ChevronLeft from "../../components/Icons/ChevronLeft";
+import Footer from "../../components/Footer";
 
 interface props {
  project: Project;
@@ -32,7 +33,7 @@ const components: Partial<PortableTextReactComponents> = {
   image: PortableImage,
  },
  block: {
-  normal: ({ children }) => <p className="py-1 indent-3">{children}</p>,
+  normal: ({ children }) => <p className="py-1 indent-3 text-justify">{children}</p>,
   h1: ({ children }) => (
    <h1 className="text-primary-orange text-5xl uppercase font-bold py-3">
     {children}
@@ -84,12 +85,10 @@ const Project = ({ project }: props) => {
       </h1>
      </section>
 
-     <div
-      className="bg-default-white mt-48 rounded-t-3xl px-5 drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] lg:grid lg:grid-cols-3 lg:max-w-5xl lg:mx-auto lg:gap-x-10 lg:drop-shadow-[0_0px_10px_rgba(0,0,0,0.25)] lg:relative lg:px-10 lg:-mt-40 lg:rounded-b-3xl py-5 xl:max-w-7xl"
-     >
+     <div className="bg-default-white mt-48 rounded-t-3xl px-5 lg:grid lg:grid-cols-3 lg:max-w-5xl lg:mx-auto lg:gap-x-10 lg:drop-shadow-[0_0px_10px_rgba(0,0,0,0.25)] lg:relative lg:px-10 lg:-mt-40 lg:rounded-b-3xl py-5 xl:max-w-7xl">
       <Link
        href={"/projects"}
-       className=" hidden absolute  items-center text-default-white p-3 z-20 lg:flex lg:-top-16 lg:-left-5 lg:hover:-translate-x-5 ease-out duration-300"
+       className=" hidden absolute  items-center text-default-white p-3 z-20 lg:flex lg:-top-16 lg:-left-5 lg:hover:-translate-x-3 ease-out duration-300"
       >
        <ChevronLeft className="w-8" />
        <span className="font-semibold text-lg">Retour</span>
@@ -169,7 +168,7 @@ const Project = ({ project }: props) => {
        )}
       </section>
       {project.body && (
-       <section className="p-5 lg:col-start-2 lg:row-start-auto lg:p-0 lg:col-span-2">
+       <section className="lg:col-start-2 lg:row-start-auto lg:p-0 lg:col-span-2">
         <h2 className="pb-1 w-fit border-b border-primary-orange text-xl text-primary-font font-medium mb-3">
          Information
         </h2>
@@ -178,6 +177,7 @@ const Project = ({ project }: props) => {
       )}
      </div>
     </main>
+    <Footer />
    </AnimatePresence>
   </div>
  );

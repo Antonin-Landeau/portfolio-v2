@@ -8,6 +8,7 @@ import CV from "./Icons/CV";
 const Header = () => {
  const router = useRouter();
  const { pathname } = router;
+ console.log(pathname);
  return (
   <motion.header
    initial={{ opacity: 0 }}
@@ -27,9 +28,9 @@ const Header = () => {
    <nav className="ml-auto mr-5 flex items-center justify-center">
     <Link
      href="/projects"
-     className={`text-default-white text-xl font-medium ${
-      pathname === "/projects" ? "text-primary-orange" : ""
-     } hover:`}
+     className={`text-default-white text-xl font-medium pb-1 ${
+      pathname === "/projects" ? "border-b-2 border-primary-orange" : ""
+     } `}
     >
      Projets
     </Link>

@@ -24,7 +24,6 @@ const projects = ({ technologies }: props) => {
      <link rel="icon" href="/favicon.png" />
     </Head>
     <main className="bg-gb-color-black" key="animation">
-     <Header />
      <ProjectsHeader />
      <ProjectsSection technologies={technologies} />
     </main>
@@ -38,7 +37,6 @@ export const getStaticProps: GetStaticProps = async () => {
   title
  }`;
  const technologies = await sanityClient.fetch(queryTechnologies);
- console.log(technologies);
  const technologyTitles = technologies.map(
   (technology: Technology) => technology.title
  );

@@ -46,7 +46,7 @@ export default function Home({ projects, skills, experiences }: props) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const queryProjects = `
-  *[_type == 'project']{
+  *[_type == 'project'][0...3]{
     title,
     url,
     githubRepository,
