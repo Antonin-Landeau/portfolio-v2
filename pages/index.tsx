@@ -14,6 +14,7 @@ import styles from "../styles/Home.module.css";
 import { Experiences, Project, Skills } from "../types/types";
 import { sanityClient } from "./../sanity";
 import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 
 interface props {
   projects: Project[];
@@ -22,6 +23,8 @@ interface props {
 }
 
 export default function Home({ projects, skills, experiences }: props) {
+ 
+
   return (
     <div>
       <AnimatePresence>
@@ -31,7 +34,7 @@ export default function Home({ projects, skills, experiences }: props) {
           <link rel="icon" href="/favicon.png" />
         </Head>
         <main className="bg-gb-color-black" key="animation">
-          <WelcomeSection  />
+          <WelcomeSection />
           <PresentationSection />
           <ProjectSection projects={projects} />
           <SkillsSection skills={skills} />
