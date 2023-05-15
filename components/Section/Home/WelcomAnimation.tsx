@@ -68,7 +68,7 @@ const WelcomAnimation: FunctionComponent<props> = ({ action }) => {
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: "80%" }}
-          transition={{ duration: 2, delay: 0.7 , ease: 'easeInOut'}}
+          transition={{ duration: 2, delay: 0.7, ease: "easeInOut" }}
           className="h-1 w-full bg-primary-orange mt-10"
         ></motion.div>
         <Typed
@@ -85,6 +85,7 @@ const WelcomAnimation: FunctionComponent<props> = ({ action }) => {
           onComplete={() => {
             setTimeout(() => {
               action(false);
+              sessionStorage.setItem("hasSeenTuto", "true");
             }, 1300);
           }}
         />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../Header";
 import ArrowDown from "../../Icons/ArrowDown";
 import { AnimatePresence, motion } from "framer-motion";
@@ -8,6 +8,17 @@ import Ambelishments from "../../Ambelishments";
 
 const WelcomeSection = () => {
   const [isTyping, setIsTyping] = useState(true);
+  const [hasSeenTuto, setHasSeenTuto] = useState<boolean>(true);
+  useEffect(() => {
+    if (window) {
+      if (sessionStorage.getItem("hasSeenTuto")) {
+        console.log("yes");
+        setIsTyping(false);
+      } else {
+        console.log("no");
+      }
+    }
+  }, []);
   return (
     <section className="flex flex-col justify-between items-center h-screen overflow-hidden relative">
       <Ambelishments />

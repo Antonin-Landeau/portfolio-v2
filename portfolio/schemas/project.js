@@ -9,6 +9,16 @@ export default {
       type: 'string',
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+    },
+    {
+      name: 'video',
+      title: 'video',
+      type: 'string',
+    },
+    {
       name: 'url',
       title: 'Website url',
       type: 'string',

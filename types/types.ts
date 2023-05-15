@@ -10,6 +10,9 @@ export interface Project {
   technologies?: Technology[];
   title?: string;
   url?: string;
+  body?: any[],
+  description?:string;
+  video?:string
 }
 
 export interface MainImage {
@@ -29,7 +32,7 @@ export interface Slug {
 
 export interface Technology {
   descriptionIcon?: MainImage;
-  title?: string;
+  title: string;
 }
 
 export interface Skills {
